@@ -39,14 +39,16 @@
 #include <fcntl.h>
 #include <signal.h>
 #include <time.h>
+#include <string>
 
-
+//structure of packet to be received
 struct ping_pkt{
     struct icmphdr hdr;
     char msg[64-sizeof(struct icmphdr)];
 };
 
 class Icmp{
+
 public:
   Icmp();
   bool process_reply(char*,int);
@@ -55,10 +57,18 @@ public:
   char* dns_lookup(char*, sockaddr_in*);
   char* reverse_dns_lookup(char*);
   void send_ping(int, sockaddr_in*,char*,char*,char*);
+  int recieve_ping();
+  int send_ping_driver(char*);
+  int get_response_type(); //returnns response type in ICMP header of packet
+  int main_driver(); //runs both send and recieve function
+  string suspicious_ip; //stores ip address found in arp packet
+  unsigned char* suspicious_mac; //stores mac address found in arp packet
+
 private:
-  struct ethhdr* eth;
+  struct ethhdr* eth; //headers of packet to be analyzed
   struct iphdr* ip;
   struct icmphdr* icmp;
+  int response_type;
 };
 
 #endif

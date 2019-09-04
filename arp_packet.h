@@ -37,16 +37,19 @@ struct __attribute__((packed)) arpheader {
 };
 
 class arp_packet{
+
+//headers to extract data
 private:
   struct ethhdr* eth;
   struct arpheader* arp;
   struct in_addr ipaddr;
+
 public:
-  arp_packet(char*, int);
-  unsigned char* eth_src_mac_address();
-  unsigned char* arp_src_mac_address();
-  unsigned char* eth_dest_mac_address();
-  unsigned char* arp_dest_mac_address();
+  arp_packet(char*, int); //constructor
+  unsigned char* eth_src_mac_address(); //returns src mac address in ethernet header
+  unsigned char* arp_src_mac_address(); //returns src mac address in arp header
+  unsigned char* eth_dest_mac_address(); //returns dest mac address in ethernet header
+  unsigned char* arp_dest_mac_address(); //returns dest mac address in arp ehader
   void set_src_ip();
   bool prelim_check();
   bool secondary_check();
