@@ -1,3 +1,21 @@
+
+
+Skip to content
+Using Gmail with screen readers
+
+1 of 2,555
+(no subject)
+Inbox
+x
+
+Jason D'Souza <jasondsouza0530@gmail.com>
+Attachments
+11:20 PM (9 minutes ago)
+to me
+
+
+10 Attachments
+
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -23,6 +41,7 @@
 #include <net/if_arp.h>
 #include <netinet/if_ether.h>
 #include <cstring>
+
 struct __attribute__((packed)) arpheader {
   __be16 ar_hrd;
   __be16 ar_pro;
@@ -37,15 +56,16 @@ struct __attribute__((packed)) arpheader {
 
 class arp_packet{
 private:
-  char packet[65536];
   struct ethhdr* eth;
   struct arpheader* arp;
+  struct in_addr ipaddr;
 public:
   arp_packet(char*, int);
   unsigned char* eth_src_mac_address();
   unsigned char* arp_src_mac_address();
   unsigned char* eth_dest_mac_address();
   unsigned char* arp_dest_mac_address();
+  void set_src_ip();
   bool prelim_check();
-
+  bool secondary_check();
 };
