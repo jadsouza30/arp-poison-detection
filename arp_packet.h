@@ -1,21 +1,3 @@
-
-
-Skip to content
-Using Gmail with screen readers
-
-1 of 2,555
-(no subject)
-Inbox
-x
-
-Jason D'Souza <jasondsouza0530@gmail.com>
-Attachments
-11:20 PM (9 minutes ago)
-to me
-
-
-10 Attachments
-
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/socket.h>
